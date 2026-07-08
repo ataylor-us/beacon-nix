@@ -36,9 +36,18 @@
 
   networking.firewall.allowedTCPPorts = [ 80 443 ];
 
+  virtualisation.libvirtd.enable = true;
+
+  networking.bridges.br0.interfaces = [ "enp1s0" ];
+  networking.networkmanager.unmanaged = [ "interface-name:enp1s0" "interface-name:br0" ];
+
+  security.sudo.extraConfig = ''
+    Defaults pwfeedback
+  '';
+
   users.users.alex = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ];
+    extraGroups = [ "wheel" "networkmanager" "libvirtd" ];
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFKo4XAoO9Z4jjpOndjKMQAtR8IRQHbn7m1WaI53Ynho"
     ];
@@ -48,6 +57,12 @@
     neovim
     git
     htop
+    procps
+    screen
+    tmux
+    curl
+    wget
+    rsync
   ];
 
   system.stateVersion = "26.05";

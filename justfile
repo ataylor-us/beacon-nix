@@ -1,3 +1,5 @@
+default: deploy switch
+
 deploy:
     scp configuration.nix alex@beacon.internal:beacon-nix/configuration.nix
 
