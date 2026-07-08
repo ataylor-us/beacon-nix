@@ -1,8 +1,8 @@
 # beacon-nix
 
-This is my nix ([NixOS](https://nixos.org/)) config files.
+This is my nix ([NixOS](https://nixos.org/)) config.
 
-Tentatively, this host is going to host my [Home Assistant VM](https://www.home-assistant.io/installation/linux/), as well as [Uptime-Kuma](https://uptime.kuma.pet/).  It currently resides on a N100 Beelink mini PC.
+Currently, this box (a Beelink Mini S12 Pro, N100) hosts an instance of [Uptime-Kuma](https://uptime.kuma.pet/). Eventually, I plan on migrating my Home Assistant container to a [Home Assistant VM](https://www.home-assistant.io/installation/linux/) on here.
 
 ## Deploying
 
