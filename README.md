@@ -4,7 +4,9 @@ This is my nix ([NixOS](https://nixos.org/)) config.
 
 Currently, this box (a Beelink Mini S12 Pro, N100) hosts an instance of [Uptime-Kuma](https://uptime.kuma.pet/).
 
-Eventually, I plan on migrating my Home Assistant container to a [VM](https://www.home-assistant.io/installation/linux/) on here. The VM will use a separate physical port for the bridge.
+Home Assistant lives on a HAOS [VM](https://www.home-assistant.io/installation/linux/), using KVM (via libvirt) as the hypervisor. The VM uses a separate physical port for the bridge.
+
+The hard drive is encrypted by LUKS, with the key loaded from a flash drive attached to it during boot.
 
 ## Deploying
 
