@@ -57,7 +57,15 @@
 
   networking.firewall.allowedTCPPorts = [ 80 443 ];
 
-  virtualisation.libvirtd.enable = true;
+  virtualisation.libvirtd = {
+    enable = true;
+    onShutdown = "shutdown";
+    onBoot = "ignore";
+  };
+  systemd.services.libvirtd = {
+    after = [ "network-online.target" ];
+    wants = [ "network-online.target" ];
+  };
 
   networking.bridges.br0.interfaces = [ "enp1s0" ];
   networking.networkmanager.unmanaged = [ "interface-name:enp1s0" "interface-name:br0" ];
