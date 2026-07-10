@@ -26,6 +26,27 @@
   services.fail2ban.enable = true;
   services.uptime-kuma.enable = true;
 
+  fileSystems."/mnt/uptimekuma-backup" = {
+    device = "nas.internal:/srv/nfs/uptimekuma-backup";
+    fsType = "nfs";
+    options = [
+      "noauto"
+      "x-systemd.automount"
+      "x-systemd.mount-timeout=10s"
+      "x-systemd.idle-timeout=600"
+      "soft"
+    ];
+  };
+
+  systemd.services.backup-uptime-kuma = {
+    startAt = "daily";
+    path = [ pkgs.sqlite ];
+    script = ''
+      sqlite3 /var/lib/uptime-kuma/kuma.db ".backup /var/lib/uptime-kuma/kuma.db.bak"
+      cp /var/lib/uptime-kuma/kuma.db.bak /mnt/uptimekuma-backup/kuma.db
+    '';
+  };
+
   services.caddy = {
     enable = true;
     virtualHosts."beacon.internal".extraConfig = ''
