@@ -102,6 +102,9 @@
     ];
   };
 
+  programs.nano.enable = false;
+  environment.variables.EDITOR = "nvim";
+
   environment.systemPackages = with pkgs; [
     neovim
     git
