@@ -104,6 +104,11 @@
 
   programs.nano.enable = false;
   environment.variables.EDITOR = "nvim";
+  environment.shellAliases = {
+    vi = "nvim";
+    vim = "nvim";
+    view = "nvim -R";
+  };
 
   environment.systemPackages = with pkgs; [
     neovim
