@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   imports = [ ./hardware-configuration.nix ];
@@ -22,6 +27,11 @@
   time.timeZone = "America/New_York";
 
   services.openssh.enable = true;
+  services.openssh.settings = {
+    PasswordAuthentication = false;
+    KbdInteractiveAuthentication = false;
+    PermitRootLogin = "no";
+  };
   services.fstrim.enable = true;
   services.fail2ban.enable = true;
   services.uptime-kuma.enable = true;
@@ -55,7 +65,10 @@
     '';
   };
 
-  networking.firewall.allowedTCPPorts = [ 80 443 ];
+  networking.firewall.allowedTCPPorts = [
+    80
+    443
+  ];
 
   virtualisation.libvirtd = {
     enable = true;
@@ -68,7 +81,10 @@
   };
 
   networking.bridges.br0.interfaces = [ "enp1s0" ];
-  networking.networkmanager.unmanaged = [ "interface-name:enp1s0" "interface-name:br0" ];
+  networking.networkmanager.unmanaged = [
+    "interface-name:enp1s0"
+    "interface-name:br0"
+  ];
 
   security.sudo.extraConfig = ''
     Defaults pwfeedback
@@ -76,7 +92,11 @@
 
   users.users.alex = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "libvirtd" ];
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+      "libvirtd"
+    ];
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFKo4XAoO9Z4jjpOndjKMQAtR8IRQHbn7m1WaI53Ynho"
     ];
