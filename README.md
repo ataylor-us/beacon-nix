@@ -21,8 +21,8 @@ just
 
 Fan was a bit noisy, and this one lives in my living room. Adjusted the fan curve in the bios (Advanced → Hardware Monitor → Smart Fan Function):
 
-| Fan (Automatic)   | Start PWM | Start temp limit |
-|--------|-----------|------------------|
-| CPU    | 95 → 35   | 35 → 50          |
-| System | 80 → 35   | 35 → 45          |
+| Fan (Automatic) | Start PWM | Start temp limit | PWM slope |
+|-----------------|-----------|------------------|-----------|
+| CPU             | 95 → 35   | 35 → 50          | 2 → 4     |
+| System          | 80 → 35   | 35 → 45          | 2 → 4     |
 
