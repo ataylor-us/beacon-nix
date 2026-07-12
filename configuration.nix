@@ -105,6 +105,7 @@
   programs.nano.enable = false;
   environment.variables.EDITOR = "nvim";
   environment.shellAliases = {
+    sudo = "sudo ";
     vi = "nvim";
     vim = "nvim";
     view = "nvim -R";
