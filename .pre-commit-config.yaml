@@ -1,10 +1,16 @@
 ---
 repos:
-    - repo: https://github.com/NixOS/nixfmt
-      rev: v1.4.0
-      hooks:
-        - id: nixfmt
-    - repo: https://github.com/gitleaks/gitleaks
-      rev: v8.24.2
-      hooks:
-        - id: gitleaks
+  - repo: local
+    hooks:
+      - id: gitleaks
+        name: Detect hardcoded secrets
+        description: Detect hardcoded secrets using Gitleaks
+        entry: gitleaks git --pre-commit --redact --staged --verbose
+        language: system
+        pass_filenames: false
+      - id: nixfmt
+        name: Format Nix files
+        description: Format Nix files using nixfmt
+        entry: nixfmt
+        language: system
+        types: [nix]
