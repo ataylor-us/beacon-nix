@@ -11,6 +11,12 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  boot.blacklistedKernelModules = [
+    "iwlwifi"
+    "btusb"
+    "bluetooth"
+  ];
+
   boot.initrd.kernelModules = [ "usb_storage" ];
   boot.initrd.luks.devices.cryptroot = {
     device = "/dev/nvme0n1p2";
