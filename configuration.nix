@@ -65,7 +65,7 @@
 
   services.caddy = {
     enable = true;
-    virtualHosts."beacon.internal".extraConfig = ''
+    virtualHosts."status.internal".extraConfig = ''
       tls internal
       reverse_proxy 127.0.0.1:3001
     '';
