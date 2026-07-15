@@ -41,6 +41,11 @@
   services.fstrim.enable = true;
   services.fail2ban.enable = true;
   services.uptime-kuma.enable = true;
+  services.adguardhome = {
+    enable = true;
+    port = 3000;
+    settings = { };
+  };
 
   fileSystems."/mnt/uptimekuma-backup" = {
     device = "nas.internal:/srv/nfs/uptimekuma-backup";
@@ -69,12 +74,18 @@
       tls internal
       reverse_proxy 127.0.0.1:3001
     '';
+    virtualHosts."dns.internal".extraConfig = ''
+      tls internal
+      reverse_proxy 127.0.0.1:3000
+    '';
   };
 
   networking.firewall.allowedTCPPorts = [
     80
     443
+    53
   ];
+  networking.firewall.allowedUDPPorts = [ 53 ];
 
   virtualisation.libvirtd = {
     enable = true;
