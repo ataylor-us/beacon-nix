@@ -48,8 +48,8 @@
     settings = { };
   };
 
-  fileSystems."/mnt/uptimekuma-backup" = {
-    device = "nas.internal:/srv/nfs/uptimekuma-backup";
+  fileSystems."/mnt/beacon-backup" = {
+    device = "nas.internal:/srv/nfs/beacon-backup";
     fsType = "nfs";
     options = [
       "noauto"
@@ -60,12 +60,18 @@
     ];
   };
 
-  systemd.services.backup-uptime-kuma = {
+  systemd.services.backup-beacon = {
     startAt = "daily";
-    path = [ pkgs.sqlite ];
+    path = [
+      pkgs.rsync
+      pkgs.sqlite
+    ];
     script = ''
-      sqlite3 /var/lib/uptime-kuma/kuma.db ".backup /var/lib/uptime-kuma/kuma.db.bak"
-      cp /var/lib/uptime-kuma/kuma.db.bak /mnt/uptimekuma-backup/kuma.db
+      rsync -a --delete /var/lib/uptime-kuma/ /mnt/beacon-backup/uptime-kuma/
+      sqlite3 /var/lib/uptime-kuma/kuma.db ".backup /mnt/beacon-backup/uptime-kuma/kuma.db"
+      rsync -a --delete /var/lib/AdGuardHome/ /mnt/beacon-backup/AdGuardHome/
+      sqlite3 /var/lib/AdGuardHome/data/stats.db ".backup /mnt/beacon-backup/AdGuardHome/data/stats.db"
+      sqlite3 /var/lib/AdGuardHome/data/sessions.db ".backup /mnt/beacon-backup/AdGuardHome/data/sessions.db"
     '';
   };
 
