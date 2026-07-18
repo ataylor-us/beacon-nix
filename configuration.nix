@@ -128,16 +128,18 @@
 
   programs.nano.enable = false;
   programs.bash.interactiveShellInit = "set -o vi";
-  environment.variables.EDITOR = "nvim";
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+    viAlias = true;
+    vimAlias = true;
+  };
   environment.shellAliases = {
     sudo = "sudo ";
-    vi = "nvim";
-    vim = "nvim";
     view = "nvim -R";
   };
 
   environment.systemPackages = with pkgs; [
-    neovim
     git
     htop
     procps
