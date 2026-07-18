@@ -127,6 +127,7 @@
   };
 
   programs.nano.enable = false;
+  programs.bash.interactiveShellInit = "set -o vi";
   environment.variables.EDITOR = "nvim";
   environment.shellAliases = {
     sudo = "sudo ";
