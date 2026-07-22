@@ -1,6 +1,6 @@
 # beacon-nix
 
-This is my nix ([NixOS](https://nixos.org/)) config.
+This is my Nix ([NixOS](https://nixos.org/)) config for my "beacon" box, which hosts essential services for my home.
 
 Currently, this box (a Beelink Mini EQ12, N100) hosts an instance of [Uptime-Kuma](https://uptime.kuma.pet/), an [AdGuardHome](https://github.com/AdguardTeam/AdGuardHome) instance, and a VM of the [Home Assistant Operating System](https://developers.home-assistant.io/docs/operating-system/).
 
