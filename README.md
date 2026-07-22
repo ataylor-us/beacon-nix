@@ -6,7 +6,7 @@ Currently, this box (a Beelink Mini EQ12, N100) hosts an instance of [Uptime-Kum
 
 The VM is run using KVM (via libvirt) as the hypervisor. It uses a separate physical port for the bridge.
 
-This AdGuardHome instance is used as a custom DNS server for my [tailnet](https://tailscale.com/docs/concepts/tailnet).
+This AdGuardHome instance is used as a custom DNS server for my devices at home & [tailnet](https://tailscale.com/docs/concepts/tailnet).
 
 The hard drive is encrypted by LUKS, with the key loaded from a flash drive attached to it during boot.
 
