@@ -42,11 +42,7 @@
   services.fail2ban.enable = true;
   services.tailscale.enable = true;
   services.uptime-kuma.enable = true;
-  services.adguardhome = {
-    enable = true;
-    port = 3000;
-    settings = { };
-  };
+  services.adguardhome.enable = true;
 
   fileSystems."/mnt/beacon-backup" = {
     device = "nas.internal:/srv/nfs/beacon-backup";
