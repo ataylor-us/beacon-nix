@@ -1,9 +1,4 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ pkgs, ... }:
 
 {
   imports = [ ./hardware-configuration.nix ];
@@ -66,8 +61,6 @@
       rsync -a --delete /var/lib/uptime-kuma/ /mnt/beacon-backup/uptime-kuma/
       sqlite3 /var/lib/uptime-kuma/kuma.db ".backup /mnt/beacon-backup/uptime-kuma/kuma.db"
       rsync -a --delete /var/lib/AdGuardHome/ /mnt/beacon-backup/AdGuardHome/
-      sqlite3 /var/lib/AdGuardHome/data/stats.db ".backup /mnt/beacon-backup/AdGuardHome/data/stats.db"
-      sqlite3 /var/lib/AdGuardHome/data/sessions.db ".backup /mnt/beacon-backup/AdGuardHome/data/sessions.db"
     '';
   };
 
