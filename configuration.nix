@@ -58,7 +58,7 @@
       pkgs.sqlite
     ];
     script = ''
-      rsync -a --delete /var/lib/uptime-kuma/ /mnt/beacon-backup/uptime-kuma/
+      rsync -a --delete --exclude 'kuma.db*' /var/lib/uptime-kuma/ /mnt/beacon-backup/uptime-kuma/
       sqlite3 /var/lib/uptime-kuma/kuma.db ".backup /mnt/beacon-backup/uptime-kuma/kuma.db"
       rsync -a --delete /var/lib/AdGuardHome/ /mnt/beacon-backup/AdGuardHome/
     '';
