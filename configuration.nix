@@ -65,6 +65,12 @@
     '';
   };
 
+  systemd.tmpfiles.rules = [
+    # Disable turbo boost + low power, trying to make this device more quiet without using the BIOS fan curve
+    "w /sys/devices/system/cpu/intel_pstate/no_turbo - - - - 1"
+    "w /sys/devices/system/cpu/cpu*/cpufreq/energy_performance_preference - - - - power"
+  ];
+
   services.caddy = {
     enable = true;
     virtualHosts."status.internal".extraConfig = ''
@@ -84,22 +90,6 @@
   ];
   networking.firewall.allowedUDPPorts = [ 53 ];
 
-  virtualisation.libvirtd = {
-    enable = true;
-    onShutdown = "shutdown";
-    onBoot = "ignore";
-  };
-  systemd.services.libvirtd = {
-    after = [ "network-online.target" ];
-    wants = [ "network-online.target" ];
-  };
-
-  networking.bridges.br0.interfaces = [ "enp1s0" ];
-  networking.networkmanager.unmanaged = [
-    "interface-name:enp1s0"
-    "interface-name:br0"
-  ];
-
   security.sudo.extraConfig = ''
     Defaults pwfeedback
   '';
@@ -109,7 +99,6 @@
     extraGroups = [
       "wheel"
       "networkmanager"
-      "libvirtd"
     ];
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFKo4XAoO9Z4jjpOndjKMQAtR8IRQHbn7m1WaI53Ynho"
