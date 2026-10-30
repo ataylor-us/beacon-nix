@@ -16,3 +16,17 @@ The nix configuration files are currently symlinked into `~/beacon-nix/`.
 # scp nix file & rebuild
 just
 ```
+
+## Fan curve
+
+This machine is in my living room and I want it to be as quiet as possible, had to play around with the fan curve.
+
+This was set in the BIOS under Advanced -> CPU Smart Fan Mode (Automatic Mode).
+
+| Setting                          | Value |
+| -------------------------------- | ----- |
+| Fan off temperature limit        | 20    |
+| Fan start temperature limit      | 25    |
+| Fan full speed temperature limit | 85    |
+| Fan start PWM                    | 40    |
+| PWM slope setting                | 1 PWM |

@@ -36,7 +36,6 @@
   };
   services.fstrim.enable = true;
   services.fail2ban.enable = true;
-  services.tailscale.enable = true;
   services.uptime-kuma.enable = true;
   services.adguardhome.enable = true;
 
@@ -66,7 +65,7 @@
   };
 
   systemd.tmpfiles.rules = [
-    # Disable turbo boost + low power, trying to make this device more quiet without using the BIOS fan curve
+    # Disable turbo boost + low power, trying to make this device quieter
     "w /sys/devices/system/cpu/intel_pstate/no_turbo - - - - 1"
     "w /sys/devices/system/cpu/cpu*/cpufreq/energy_performance_preference - - - - power"
   ];
