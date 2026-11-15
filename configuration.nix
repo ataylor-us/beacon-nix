@@ -39,6 +39,17 @@
   services.uptime-kuma.enable = true;
   services.adguardhome.enable = true;
 
+  power.ups = {
+    enable = true;
+    mode = "netclient";
+    upsmon.monitor.livingroom = {
+      system = "livingroom-ups.internal@livingroom-ups.internal";
+      user = "beacon";
+      passwordFile = "/root/nut-password";
+      type = "secondary";
+    };
+  };
+
   fileSystems."/mnt/beacon-backup" = {
     device = "nas.internal:/srv/nfs/beacon-backup";
     fsType = "nfs";
