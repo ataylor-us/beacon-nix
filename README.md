@@ -17,6 +17,10 @@ The nix configuration files are currently symlinked into `~/beacon-nix/`.
 just
 ```
 
+## UPS
+
+[NUT](https://networkupstools.org/) is used with my UniFi UPS Tower to provide a safe shutdown
+
 ## Fan curve
 
 This machine is in my living room and I want it to be as quiet as possible, had to play around with the fan curve.
